@@ -62,3 +62,15 @@ mixin blockquote-center(text,footer,author,style)
 mixin blockquote-right(text,footer,author,style)
 	- var style = ' ' + style || ''
 	+blockquote(text,footer,author,'text-right' + style)
+
+mixin cardItem(title,price, srcImg)
+	.ui-cardItem 
+		.ui-cardItem_thumbnail 
+			+image_ratio(srcImg,'thumbnail','354x472')
+		.ui-cardItem_title 
+			h4: a(href="#") #[=title] 
+			.price #[=price]
+		.ui-cardItem_desc 
+			p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+		.ui-cardItem_button 
+			button.ui-button Đăng ký		

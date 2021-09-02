@@ -1,6 +1,357 @@
 // Sample code
+main.wrapper {
+    padding-bottom: 120px;
+    overflow: hidden;
+    @include media-breakpoint-down(lg) {
+        padding-bottom: 80px;
+    }
+    @include media-breakpoint-down(md) {
+        padding-bottom: 40px;
+    }
+}
 .masthead {
     padding: 200px 0;
     text-align: center;
     background-color: #fff;
+}
+.image-ratio {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s ease;
+    }
+    &-354x472 {
+        padding-bottom: 395/354 * 100%;
+        @include media-breakpoint-between(md, lg) {
+            padding-bottom: 148.58192%;
+        }
+    }
+    &-772x250 {
+        padding-bottom: 35.38342%;
+    }
+}
+
+// card template
+.t-card {
+    $root: &;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    &_bg {
+        overflow: hidden;
+        background: linear-gradient(rgba(243, 243, 243, 0.95), rgba(255, 255, 255, 0.95)), url('/images/hero-bg.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    &_ads {
+        margin-top: 76px;
+        @include media-breakpoint-down(sm) {
+            margin-top: 30px;
+        }
+        a {
+            display: block;
+        }
+    }
+    &_flex {
+        display: flex;
+        flex-wrap: wrap;
+        &_item {
+            position: relative;
+            width: 100%;
+        }
+    }
+    &_title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h2 {
+            position: relative;
+            margin: 0;
+            font-size: 45px;
+            font-weight: 700;
+            color: #414141;
+            @include media-breakpoint-down(md) {
+                font-size: 32px;
+            }
+        }
+        a.viewmore {
+            font-weight: 600;
+            color: #797979;
+            transition: 0.4s ease;
+            @include media-breakpoint-down(md) {
+                font-size: 14px;
+            }
+            &:hover {
+                color: #ef233c;
+            }
+        }
+    }
+    &_list {
+        margin-top: 24px;
+        @include media-breakpoint-down(sm) {
+            margin-top: 17px;
+        }
+    }
+}
+.ui-cardList {
+    margin-right: -12px;
+    margin-left: -12px;
+    &_item {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+    &:hover {
+        .slick-arrow {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    &.small {
+        .slick-arrow {
+            display: none !important;
+        }
+    }
+}
+.ui-cardItem {
+    $root: &;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: 0.4s ease;
+        @include media-breakpoint-down(lg) {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        &::before {
+            opacity: 1;
+        }
+        .image-ratio img {
+            transform: scale(1.04);
+        }
+        #{$root}_title {
+            bottom: 50%;
+        }
+        #{$root}_desc {
+            transform: translateX(0);
+        }
+        #{$root}_button {
+            transform: scale(1);
+        }
+    }
+    &_thumbnail {
+        border-radius: 10px;
+    }
+    &_title {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        z-index: 2;
+        transition: 0.4s ease;
+        @include media-breakpoint-down(lg) {
+            top: 10%;
+            bottom: unset;
+        }
+        @include media-breakpoint-down(sm) {
+            right: 30px;
+            left: 30px;
+            text-align: center;
+        }
+        h4 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 45px;
+            font-weight: 600;
+            color: #fff;
+            @include media-breakpoint-down(lg) {
+                font-size: 25px;
+            }
+            a {
+                color: #fff;
+                text-decoration: none;
+                transition: 0.4s ease;
+                &:hover {
+                    color: #bdbdbd;
+                }
+            }
+        }
+        .price {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+            @include media-breakpoint-down(lg) {
+                font-size: 18px;
+            }
+            @include media-breakpoint-down(sm) {
+                justify-content: center;
+            }
+            &::before {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                content: '';
+                background: transparent url('/images/price-tag.svg') no-repeat center/100% auto;
+            }
+        }
+    }
+    &_desc {
+        position: absolute;
+        bottom: 30%;
+        left: 20px;
+        z-index: 2;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        color: #fff;
+        transition: 0.4s ease;
+        transform: translateX(-100%);
+        @include media-breakpoint-down(lg) {
+            top: 40%;
+            right: 30px;
+            bottom: unset;
+            left: 30px;
+            transform: translateX(0);
+        }
+        @include media-breakpoint-down(sm) {
+            bottom: 20%;
+        }
+        p {
+            display: -webkit-box;
+            margin: 0;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+    &_button {
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+        left: 0;
+        z-index: 2;
+        text-align: center;
+        transition: 0.4s ease;
+        transform: scale(0);
+        @include media-breakpoint-down(lg) {
+            transform: scale(1);
+        }
+        @include media-breakpoint-down(sm) {
+            bottom: 20%;
+        }
+    }
+}
+.ui-button {
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: #ef233c;
+    border: 2px solid transparent;
+    border-radius: 0;
+    outline: 0 !important;
+    box-shadow: inset 0 0 0 50px #ef233c;
+    transition: ease-out 0.3s;
+    -webkit-appearance: none;
+    &:hover {
+        color: #ef233c;
+        background: #fff;
+        border-color: #ef233c;
+        box-shadow: inset 0 0 0 0 #ef233c;
+    }
+}
+
+//slick custom
+.slick-arrow {
+    top: calc(50% - 23px);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #ef233c;
+    transition: 0.4s ease;
+    @include media-breakpoint-up(lg) {
+        width: 56px;
+        height: 56px;
+        visibility: hidden;
+        opacity: 0;
+    }
+    &:hover {
+        background-color: #fff !important;
+    }
+    &::before {
+        width: 14px;
+        height: 14px;
+        border-top: 3px solid #ef233c;
+        border-right: 3px solid #ef233c;
+    }
+    &.slick-disabled {
+        border-color: #bdbdbd;
+    }
+    &.slick-next {
+        @include media-breakpoint-down(md) {
+            right: 15px;
+        }
+        &::before {
+            top: 58%;
+            left: 49%;
+            transform: rotate(45deg);
+        }
+    }
+    &.slick-prev {
+        @include media-breakpoint-down(md) {
+            left: 15px;
+        }
+        &::before {
+            top: 56%;
+            left: 60%;
+            transform: rotate(225deg);
+        }
+    }
+}
+.mt-60 {
+    margin-top: 60px;
+    @include media-breakpoint-down(lg) {
+        margin-top: 20px;
+    }
+    @include media-breakpoint-down(md) {
+        margin-top: 10px;
+    }
+}
+.mt-120 {
+    margin-top: 120;
+    @include media-breakpoint-down(lg) {
+        margin-top: 80px;
+    }
+    @include media-breakpoint-down(md) {
+        margin-top: 40px;
+    }
+}
+.mt-10 {
+    margin-top: 10px;
 }

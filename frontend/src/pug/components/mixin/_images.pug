@@ -96,3 +96,7 @@ mixin figure(_src, _caption,_align,_class)
 	figure.figure
 		img.figure-img.img-fluid.rounded(src=_src, alt=_caption, class=_class)
 		figcaption.figure-caption(class=_align)= _caption
+
+mixin image_ratio(src, alt, ratio)
+	.image-ratio(class=`image-ratio-${ratio}`)
+		img(src=src, alt=alt)
