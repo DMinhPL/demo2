@@ -355,3 +355,14 @@ main.wrapper {
 .mt-10 {
     margin-top: 10px;
 }
+i.icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    &-zalo {
+        width: 20px;
+        height: 20px;
+        background-image: url('/images/zalo.svg');
+    }
+}

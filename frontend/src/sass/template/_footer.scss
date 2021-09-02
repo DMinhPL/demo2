@@ -8,4 +8,50 @@
         margin: 0;
         color: $white;
     }
+    .list-socials {
+        margin-top: 20px;
+        ul {
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            list-style: none;
+            li {
+                padding-right: 8px;
+                padding-left: 8px;
+                a {
+                    display: block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 45px;
+                    height: 45px;
+                    text-decoration: none;
+                    background-color: $white;
+                    border-radius: 50%;
+                    transition: 0.4s ease;
+                    &:hover {
+                        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+                        i.fa-google-plus {
+                            color: #ef233c;
+                        }
+                        i.fa-facebook {
+                            color: #0e8cf1;
+                        }
+                        i.icon {
+                            filter: grayscale(0);
+                        }
+                    }
+                    i.icon {
+                        filter: grayscale(100%);
+                        transition: 0.4s ease;
+                    }
+                    i.fa {
+                        font-size: 25px;
+                        color: $black;
+                        transition: 0.4s ease;
+                    }
+                }
+            }
+        }
+    }
 }
