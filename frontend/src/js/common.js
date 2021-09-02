@@ -87,6 +87,38 @@ $(() => {
             });
         }
     }
+    function scroll_navigation() {
+        const $a = $('header.navbar a.nav-item.scroll');
+        const $header = $('header.navbar');
+        const $nav = $('header.navbar .navbar-nav');
+        const $banner = $('.hero');
+        $a.on('click', (e) => {
+            e.preventDefault();
+            const target = $(e.currentTarget).attr('href');
+            $nav.find('a.nav-item.scroll').removeClass('active');
+            $(e.currentTarget).addClass('active');
+            $('html,body')
+                .stop()
+                .animate(
+                    {
+                        scrollTop: $(target).offset().top - $header.outerHeight() - $nav.outerHeight() - 60 + $banner.outerHeight(),
+                    },
+                    400
+                );
+            $('#navbarCollapse').collapse('hide');
+        });
+        $(window).on('scroll', () => {
+            const scrollDistance = $(window).scrollTop();
+            const heightHeader = $header.outerHeight();
+            const $sectionDetail = $('section.t-card');
+            $sectionDetail.each(function(i, val) {
+                if ($(val).offset().top <= scrollDistance + heightHeader + 60) {
+                    $a.removeClass('active');
+                    $a.eq(i).addClass('active');
+                }
+            });
+        });
+    }
     // Sticky Navbar
     $(window).scroll(function() {
         if ($(this).scrollTop() > 0) $('.navbar').addClass('nav-sticky');
@@ -96,4 +128,5 @@ $(() => {
     //invoke function
     ui_slider();
     typed_text();
+    scroll_navigation();
 });
